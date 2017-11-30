@@ -21,12 +21,12 @@ void crc() {
       xor();
     }
 
-    for (c = 0; c < N; c++) {
+    for (c = 0; c < N-1; c++) {
       cs[c] = cs[c + 1];
     }
 
     cs[c] = t[e++];
-  } while (e < (a + N - 1));
+  } while (e <= (a + N - 1));
 }
 
 int main(int argc, char const *argv[]) {
@@ -37,7 +37,7 @@ int main(int argc, char const *argv[]) {
 
   a = strlen(t);
 
-  for (e = a; e < (a + N - 1); e++) {
+  for (e = a; e <= (a + N - 1); e++) {
     t[e] = '0';
   }
 
@@ -47,7 +47,7 @@ int main(int argc, char const *argv[]) {
 
   printf("Checksum: %s\n", cs);
 
-  for (e = a; e < (a + N - 1); e++) {
+  for (e = a; e <= (a + N - 1); e++) {
     t[e] = cs[e - a];
   }
 
@@ -64,8 +64,8 @@ int main(int argc, char const *argv[]) {
 
   crc();
 
-  for (e = 0; (e < N - 1) && (cs[e] != '1'); e++) {
-    if (e < N - 1) {
+  for (e = 0; (e <= N - 1) && (cs[e] != '1'); e++) {
+    if (e <= N - 1) {
       printf("Error Detected!\n");
     } else {
       printf("No Error Detected!\n");
